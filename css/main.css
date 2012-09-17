@@ -1,0 +1,9 @@
+.rightcol {
+	width: 50%;
+	float: right;
+}
+
+.leftcol {
+	width: 50%;
+	float: left;
+}
