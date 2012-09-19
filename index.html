@@ -17,6 +17,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/2.1.0/knockout-min.js"></script>
 <script src="js/ko-jqueryui.js"></script>
+<script src="js/ko-observablewithrevert.js"></script>
 <script src="js/main.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -29,9 +30,10 @@
 <div class="leftcol">
 	<!-- ko foreach: dish -->
 	<div>
-		<label data-bind="attr: { for: id }, text: name"></label>
+		<label class="special" data-bind="attr: { for: id }, text: name"></label>
 		<div data-bind="slider: value, disable: false, jqOptions: { animate: true }, min: min, max: max"></div>
-		<input type="text" data-bind="attr: { id: id }, value: value" />
+		<input class="attr" type="text" data-bind="attr: { id: id }, value: value" />
+		<div class="clear"></div>
 	</div>
 	<!-- /ko -->
 	<div>
@@ -43,6 +45,11 @@
 	<ol data-bind="foreach: skills.list, selectable: skills.selected">
 		<li class="ui-widget-content" data-bind="text: name"></li>
 	</ol>
+</div>
+
+<div>
+<span data-bind="text: ko.toJSON(model)">
+</span>
 </div>
 
 

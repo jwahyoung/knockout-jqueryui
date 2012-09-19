@@ -1,3 +1,7 @@
+body {
+	background: #edb;
+}
+
 .rightcol {
 	width: 50%;
 	float: right;
@@ -6,4 +10,31 @@
 .leftcol {
 	width: 50%;
 	float: left;
+}
+
+.ui-slider-horizontal {
+	height: 2em !important;
+	width: 90%;
+	float: left;
+}
+
+.ui-slider-handle {
+	height: 2.5em !important;
+	cursor: move !important;
+}
+
+.clear {
+	clear: both;
+}
+
+.attr {
+	font-size: 1.5em;
+	width: 35px;
+	float: left;
+}
+
+.special {
+	display: block;
+	font-size: 2em;
+	font-variant: small-caps;
 }

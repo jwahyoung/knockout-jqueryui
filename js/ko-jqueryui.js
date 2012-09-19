@@ -12,6 +12,9 @@
 				value: valueAccessor()(),
 				slide: function (event, ui) {
 					valueAccessor()(ui.value);
+				},
+				change: function (event, ui) {
+
 				}
 			}
 

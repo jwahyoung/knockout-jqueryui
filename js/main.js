@@ -1,26 +1,46 @@
 function Character() {
-
 	var that = this;
 
 	this.maxpoints = ko.observable(40);
 	this.max = 10;
 	this.min = 1;
 
-	this.st = ko.observable(5);
-	this.pe = ko.observable(5);
-	this.en = ko.observable(5);
-	this.ch = ko.observable(5);
-	this.ii = ko.observable(5);
-	this.ag = ko.observable(5);
-	this.lk = ko.observable(5);
+	var special = {
+		'st': 5,
+		'pe': 5,
+		'en': 5,
+		'ch': 5,
+		'ii': 5,
+		'ag': 5,
+		'lk': 5
+	};
+
+	for (prop in special) {
+		console.log(prop);
+		console.log(this);
+		this[prop] = ko.observableWithRevert(special[prop]);
+		this[prop].subscribe(function (value) {
+			if (that.charpoints() > that.maxpoints()) {
+				console.log(this);
+				this.target.revert();
+			}
+		});
+	}
+	console.log(this);
+
+	this.charpoints = ko.computed(function () {
+		return that.st() + that.pe() + that.en() + that.ch() + that.ii() + that.ag() + that.lk();
+	});
+
+	this.pointsleft = ko.computed(function () {
+		return 0;
+	});
 };
 
 var myChar = new Character();
 
 var model = {
-	pointsleft: ko.computed(function () {
-		return myChar.maxpoints - myChar.st - myChar.pe - myChar.en - myChar.ch - myChar.ii - myChar.ag - myChar.lk;
-	}),
+	pointsleft: myChar.charpoints,
 	dish: [
 		{
 			id: 'st',
