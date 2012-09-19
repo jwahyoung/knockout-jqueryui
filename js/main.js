@@ -19,6 +19,14 @@ function Character() {
 		console.log(prop);
 		console.log(this);
 		this[prop] = ko.observableWithRevert(special[prop]);
+	}
+	console.log(this);
+
+	this.charpoints = ko.computed(function () {
+		return that.st() + that.pe() + that.en() + that.ch() + that.ii() + that.ag() + that.lk();
+	});
+
+	for (prop in special) {
 		this[prop].subscribe(function (value) {
 			if (that.charpoints() > that.maxpoints()) {
 				console.log(this);
@@ -26,11 +34,6 @@ function Character() {
 			}
 		});
 	}
-	console.log(this);
-
-	this.charpoints = ko.computed(function () {
-		return that.st() + that.pe() + that.en() + that.ch() + that.ii() + that.ag() + that.lk();
-	});
 
 	this.pointsleft = ko.computed(function () {
 		return 0;
@@ -40,6 +43,8 @@ function Character() {
 var myChar = new Character();
 
 var model = {
+	sharedLimit: myChar.maxpoints,
+	sharedValue: myChar.charpoints,
 	pointsleft: myChar.charpoints,
 	dish: [
 		{

@@ -2,6 +2,9 @@
 	ko.bindingHandlers.slider = {
 		init: function (element, valueAccessor, allBindingsAccessor, viewModel, context) {
 			console.log("slider.init");
+			var sharedLimit = allBindingsAccessor().sharedLimit;
+			var sharedValue = allBindingsAccessor().sharedValue;
+			var oldValue = valueAccessor()();
 			var sliderOptions = {
 				/* Main functions. */
 				disabled: allBindingsAccessor().disable,
@@ -11,7 +14,15 @@
 				step: allBindingsAccessor().step || null,
 				value: valueAccessor()(),
 				slide: function (event, ui) {
-					valueAccessor()(ui.value);
+					var delta = ui.value - oldValue;
+					console.log(delta);
+					if (ko.utils.unwrapObservable(sharedValue) + delta > ko.utils.unwrapObservable(sharedLimit)) {
+						return false;
+					} else {
+						valueAccessor()(ui.value);
+					}
+
+					oldValue = valueAccessor()();
 				},
 				change: function (event, ui) {
 

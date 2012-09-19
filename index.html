@@ -31,7 +31,7 @@
 	<!-- ko foreach: dish -->
 	<div>
 		<label class="special" data-bind="attr: { for: id }, text: name"></label>
-		<div data-bind="slider: value, disable: false, jqOptions: { animate: true }, min: min, max: max"></div>
+		<div data-bind="slider: value, disable: false, jqOptions: { animate: true }, min: min, max: max, sharedLimit: $parent.sharedLimit, sharedValue: $parent.sharedValue"></div>
 		<input class="attr" type="text" data-bind="attr: { id: id }, value: value" />
 		<div class="clear"></div>
 	</div>
